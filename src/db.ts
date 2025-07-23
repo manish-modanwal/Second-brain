@@ -21,10 +21,20 @@ const ContentSchema= new Schema({
     title:String,
     link:String,
     tags:[{type:mongoose.Types.ObjectId,ref:'Tag'}],
-    userId: {type : mongoose.Types.ObjectId, ref:'users', required:true }
+    userId: {type : mongoose.Types.ObjectId, ref:'users', required:true },
+    type: String,
 
 })
 
+
+const LinkSchema= new Schema({
+
+    hash :String,
+    userId: {type : mongoose.Types.ObjectId, ref:'users', required:true ,unique:true},
+
+})
+
+export const LinkModel = model("Links", LinkSchema);
 
 // ✅ Export User model
 export const UserModel = model("users", UserSchema);
